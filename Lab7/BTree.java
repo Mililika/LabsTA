@@ -54,16 +54,12 @@ public class BTree {
                 i--;
             }
             i++;
-            // if the node is full, split it.
             if (node.children[i - 1].numberOfNodes == 3) {
-                // call the Split child method to split the node to two nodes
                 splitChild(node, i, node.children[i - 1]);
-                // Determine which of the two children is now the correct one to descend to.
                 if (value > node.key[i - 1]) {
                     i++;
                 }
             }
-            // Recursive Call
             insertNonfull(node.children[i - 1], value);
         }
     }
