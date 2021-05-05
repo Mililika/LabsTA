@@ -1,0 +1,399 @@
+0 1 q r 0
+0 0 w r 0
+0 _ _ r rw1 
+rw1 i * r rw1
+rw1 o * r rw1
+rw1 1 i r goi
+rw1 0 o r goo
+rw1 _ _ l gol2
+
+gol2 i * l gol2
+gol2 o * l gol2
+gol2 _ _ l gol32 
+gol32 q * l gol32
+gol32 w * l gol32
+gol32 _ _ r gol3
+gol3 q * l gol3
+gol3 w * l gol3 
+gol3 _ _ r gorh
+gorh F * r gorh
+gorh 1 * r gorh
+gorh 0 * r gorh
+gorh q 1 r mkLasx
+gorh w 0 r mkLasy
+
+mkLasx * * r mkLasx
+mkLasx _ _ r mkLasx
+mkLasx a * r mkLasx2
+mkLasx b * r mkLasx2
+mkLasx2 a * r mkLasx2
+mkLasx2 b * r mkLasx2
+mkLasx2 _ _ r mkLasx3
+mkLasx3 _ x l goLeftNew
+mkLasx3 x * r mkLasx3
+mkLasx3 y * r mkLasx3
+
+mkLasy * * r mkLasy
+mkLasy _ _ r mkLasy
+mkLasy a * r mkLasy2
+mkLasy b * r mkLasy2
+mkLasy2 a * r mkLasy2
+mkLasy2 b * r mkLasy2
+mkLasy2 _ _ r mkLasy3
+mkLasy3 _ y l goLeftNew
+mkLasy3 x * r mkLasy3
+mkLasy3 y * r mkLasy3
+
+goLeftNew _ _ l goLeftNew
+goLeftNew F _ r chek
+goLeftNew * * l goLeftNew
+goLeftNew q * l goLeftNew2
+goLeftNew w * l goLeftNew2
+goLeftNew2 q * l goLeftNew2
+goLeftNew2 1 * l goLeftNew2
+goLeftNew2 0 * l goLeftNew2
+goLeftNew2 w * l goLeftNew2
+goLeftNew2 _ F * golWhileQW
+goLeftNew2 F * * gorh
+golWhileQW * * l golWhileQW
+golWhileQW q * l golWhileQW
+golWhileQW w * l golWhileQW
+golWhileQW _ _ r golWhileQW 
+golWhileQW F * r gorh
+
+rw12 _ _ r rw1
+gol * * l gol
+gol _ _ l gol
+gol q * r rw12
+gol w * r rw12 
+
+goi * * r goi
+goi _ _ r makeiNew
+makeiNew _ a l gol
+makeiNew a * r makeSpi
+makeiNew b * r makeSpi
+makeSpi _ a l gol
+makeSpi a * r makeSpi
+makeSpi b * r makeSpi
+
+goo * * r goo
+goo _ _ r makeo
+makeo _ _ * makeo1
+makeo1 _ b l gol
+makeo1 a * r makeoSp
+makeo1 b * r makeoSp
+makeo a * r makeoSp
+makeo b * r makeoSp
+makeoSp _ b l gol 
+makeoSp a * r makeoSp
+makeoSp b * r makeoSp
+
+chek 0 O r untilI
+chek 1 L r untilO
+
+left _ _ l left
+left * * l left
+left C * r left2 
+left V * r left2 
+left2 _ _ l frsBig
+left2 i * l left3
+left2 o * l left3
+left3 * * l left3
+left3 _ _ * left
+left O * r chek
+left L * r chek
+
+untilO * * r untilO
+untilO _ _ r untilO
+untilO i C * left
+untilO o * r frsBig
+
+untilI * * r untilI
+untilI _ _ r untilI
+untilI i * * secBig
+untilI o V * left
+
+frsBig * * r frsBig
+frsBig _ M l SecondLeft
+secBig * * r secBig
+secBig _ M l SecondLeft
+
+SecondLeft * * l SecondLeft
+SecondLeft _ _ l SecondLeft
+SecondLeft O * l SecondLeft2
+SecondLeft L * l SecondLeft2
+SecondLeft2 _ _ r change
+SecondLeft2 L * l SecondLeft2
+SecondLeft2 O * l SecondLeft2
+
+change L 1 r change
+change C 1 r change
+change V 0 r change
+change O 0 r change
+change 1 * r change
+change 0 * r change
+change _ _ r change
+change o 0 r change
+change i 1 r change
+change A * r printWord2
+change M * r printWord2
+
+goingLeft _ _ l goingLeft
+goingLeft * * l goingLeft
+goingLeft A * r goingRight
+goingLeft M * r goingRight
+goingRight _ _ r goingRight
+goingRight * * * printWord2
+
+printWord2 b _ r word2B 
+printWord2 a _ r word2A
+printWord2 x * * changeSec
+printWord2 y * * changeSec
+
+word2B * * r word2B
+word2B _ _ r word2B2
+word2B2 x * r word2B2
+word2B2 y * r word2B2
+word2B2 b * r word2B2
+word2B2 a * r word2B2
+word2B2 _ _ r word2B3
+word2B3 b * r word2B3
+word2B3 a * r word2B3
+word2B3 _ b l goingLeft
+
+word2A * * r word2A
+word2A _ _ r word2A2
+word2A2 x * r word2A2
+word2A2 y * r word2A2
+word2A2 b * r word2A2
+word2A2 a * r word2A2
+word2A2 _ _ r word2A3
+word2A3 b * r word2A3
+word2A3 a * r word2A3
+word2A3 _ a l goingLeft
+
+changeSec x 1 r changeSec
+changeSec y 0 r changeSec
+changeSec _ _ r changeSecIf
+changeSecIf _ _ l untilResult
+untilResult _ _ l untilResult
+untilResult * * l untilResult
+untilResult A _ l goleftA
+untilResult M _ l goleftM
+changeSecIf a * * changeSec
+changeSecIf b * * changeSec
+changeSec b 0 r changeSec
+changeSec a 1 r changeSec
+
+goleftA * * l goleftA
+goleftA _ _ l goleftAIf
+goleftAIf * * l goleftA
+goleftAIf _ _ r goleftAIf2
+goleftAIf2 _ _ r Add0
+
+goleftM * * l goleftM
+goleftM _ _ l goleftMIf
+goleftMIf * * l goleftM
+goleftMIf _ _ r goleftMIf2
+goleftMIf2 _ _ r Multi0
+
+
+Add0 _ _ r 1
+Add0 * * r Add0
+1 _ _ l 2
+1 * * r 1
+2 0 _ l 3x
+2 1 _ l 3y
+2 _ _ l 7
+3x _ _ l 4x
+3x * * l 3x
+3y _ _ l 4y
+3y * * l 3y
+4x 0 x r Add0
+4x 1 y r Add0
+4x _ x r Add0
+4x * * l 4x    ; skip the x/y's
+4y 0 1 * 5
+4y 1 0 l 4y
+4y _ 1 * 5
+4y * * l 4y    ; skip the x/y's
+5 x x l 6
+5 y y l 6
+5 _ _ l 6
+5 * * r 5
+6 0 x r Add0
+6 1 y r Add0
+
+7 x 0 l 7
+7 y 1 l 7
+7 _ _ r answerAdd
+7 * * l 7
+
+answerAdd * * * return
+
+
+Multi0 * * l Multi1
+Multi1 _ _ l Multi2
+Multi2 _ 0 r Multi3
+Multi3 _ _ r 10
+
+; Find end of num1
+10 _ _ l 11
+10 x x l 11
+10 0 0 r 10
+10 1 1 r 10
+
+
+; If last digit of num1 is 0, multiply num2 by 2
+11 0 x r 20
+; If last digit of num1 is 1, add num2 to tally and then multiply num2 by 2
+11 1 x r 30
+
+
+; Multiply num2 by 2
+20 _ _ r 20
+20 x x r 20
+20 * * r 21
+21 _ 0 l 25 ; Multiplication by 2 done, return to end of num1
+21 * * r 21
+25 _ _ l 26
+25 * * l 25
+26 _ _ r 80 ; Finished multiplying. Clean up
+26 x x l 26
+26 0 0 * 11
+26 1 1 * 11
+
+; Add num2 to tally
+30 _ _ r 30
+30 x x r 30
+30 * * r 31
+31 _ _ l 32
+31 * * r 31
+32 0 o l 40 ; Add a zero
+32 1 i l 50 ; Add a one
+32 o o l 32
+32 i i l 32
+32 _ _ r 70 ; Finished adding
+
+; Adding a 0 to tally
+40 _ _ l 41
+40 * * l 40 ; Found end of num2
+41 _ _ l 41
+41 * * l 42 ; Found start of num1
+42 _ _ l 43 ; Found end of num1
+42 * * l 42
+43 o o l 43
+43 i i l 43
+43 0 o r 44
+43 1 i r 44
+43 _ o r 44
+44 _ _ r 45 ; Found end of tally
+44 * * r 44
+45 _ _ r 45
+45 * * r 46 ; Found start of num1
+46 _ _ r 47 ; Found end of num1
+46 * * r 46
+47 _ _ r 47
+47 * * r 48
+48 _ _ l 32 ; Found end of num2
+48 * * r 48
+
+; Adding a 1 to tally
+50 _ _ l 51 ; Found end of num2
+50 * * l 50 
+51 _ _ l 51
+51 * * l 52 ; Found start of num1
+52 _ _ l 53 ; Found end of num1
+52 * * l 52
+53 o o l 53
+53 i i l 53
+53 _ i r 55
+53 0 i r 55 ; return to num2
+53 1 o l 54
+54 0 1 r 55
+54 1 0 l 54
+54 _ 1 r 55
+55 _ _ r 56 ; Found end of tally
+55 * * r 55
+56 _ _ r 56
+56 * * r 57 ; Found start of num1
+57 _ _ r 58 ; Found end of num1
+57 * * r 57
+58 _ _ r 58
+58 * * r 59
+59 _ _ l 32 ; Found end of num2
+59 * * r 59
+
+; Finished adding, clean up
+70 i 1 r 70
+70 o 0 r 70
+70 _ _ l 71
+71 _ _ l 72 ; Found end of num2
+71 * * l 71
+72 _ _ l 72
+72 * * l 73 ; Found start of num1
+73 _ _ l 74
+73 * * l 73
+74 o 0 l 74
+74 i 1 l 74
+74 * * r 75 ; Finished cleaning up tally
+75 _ _ r 76
+75 * * r 75
+76 _ _ r 20 ; Multiply num2 by 2
+76 * * r 76
+
+; Finished multiplying, clean up
+80 x _ r 80
+80 _ _ r 81
+81 _ _ l 82
+81 * _ r 81
+82 _ _ l 82
+82 * * * giveAnswerMulti
+
+giveAnswerMulti * * l giveAnswerMulti 
+giveAnswerMulti _ _ r return
+return _ _ r untilNum
+untilNum _ _ r untilNum
+untilNum * * * LastVisualStep
+return 1 F r returnI
+return 0 F r returnO
+
+returnI * * r returnI
+returnI _ _ r returnI2
+returnI2 * * r returnI2
+returnI2 _ _ r returnI2
+returnI2 1 * * returnI3
+returnI2 0 * * returnI3
+returnI3 * * r returnI3
+returnI3 _ _ r returnI4
+returnI4 * * r returnI4
+returnI4 _ _ r printI
+printI _ 1 l goBack
+printI 1 * r printI
+printI 0 * r printI
+
+returnO * * r returnO
+returnO _ _ r returnO2
+returnO2 * * r returnO2
+returnO2 _ _ r returnO2
+returnO2 1 * * returnO3
+returnO2 0 * * returnO3
+returnO3 * * r returnO3
+returnO3 _ _ r returnO4
+returnO4 * * r returnO4
+returnO4 _ _ r printO
+printO _ 0 l goBack
+printO 1 * r printO
+printO 0 * r printO
+
+goBack * * l goBack
+goBack _ _ l goBack
+goBack F _ r return
+
+LastVisualStep * * r rightGoing
+rightGoing * * r rightGoing
+rightGoing _ _ r rightGoing2
+rightGoing2 * * r rightGoing2
+rightGoing2 _ _ r rightGoing3
+rightGoing3 * * r rightGoing3 
+rightGoing3 _ _ l halt
